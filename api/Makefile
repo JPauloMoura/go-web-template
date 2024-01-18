@@ -17,3 +17,10 @@ build:
 generation-image: build
 	@echo "Generation docker image..."
 	@docker build --no-cache -f Dockerfile -t jp0user0docker/validator-uuid-api:latest .
+
+remove-doc:
+	@rm -r ./handlers/docs
+	@make create-doc
+
+create-doc:
+	@swag init -d . --parseDependency --parseInternal --parseDepth 2 -o handlers/docs

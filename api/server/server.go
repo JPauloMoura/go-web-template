@@ -4,9 +4,11 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/JPaulo-Moura/uuid-validator/api/handlers"
-
 	"github.com/rs/cors"
+	httpSwagger "github.com/swaggo/http-swagger"
+
+	"github.com/JPaulo-Moura/uuid-validator/api/handlers"
+	_ "github.com/JPaulo-Moura/uuid-validator/api/handlers/docs"
 )
 
 type IServer interface {
@@ -27,6 +29,7 @@ func NewServer(handler handlers.Validator, port string) IServer {
 
 func (s Server) Start() {
 	mux := http.NewServeMux()
+	mux.HandleFunc("/", httpSwagger.WrapHandler)
 	mux.HandleFunc("/validator", s.HandlerUse.Validate)
 	routers := cors.AllowAll().Handler(mux)
 

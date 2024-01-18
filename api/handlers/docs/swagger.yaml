@@ -1,0 +1,41 @@
+basePath: /
+definitions:
+  handlers.ValidatorResponse:
+    properties:
+      data:
+        type: string
+      error:
+        type: string
+    type: object
+host: localhost:3002
+info:
+  contact:
+    name: João Paulo Moura
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: API para validação de UUIDs
+  version: 1.0.0
+paths:
+  /validator:
+    get:
+      consumes:
+      - application/json
+      description: Verifica se a valor informado é um uuid valido
+      parameters:
+      - description: 6457d5dc-6a4b-409f-972e-f8bb8f9f9f67
+        in: query
+        name: uid
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.ValidatorResponse'
+      summary: Verifica se a valor informado é um uuid valido
+      tags:
+      - Validate
+swagger: "2.0"

@@ -1,0 +1,63 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "API para validação de UUIDs",
+        "contact": {
+            "name": "João Paulo Moura"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:3002",
+    "basePath": "/",
+    "paths": {
+        "/validator": {
+            "get": {
+                "description": "Verifica se a valor informado é um uuid valido",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Validate"
+                ],
+                "summary": "Verifica se a valor informado é um uuid valido",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "6457d5dc-6a4b-409f-972e-f8bb8f9f9f67",
+                        "name": "uid",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.ValidatorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "handlers.ValidatorResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "string"
+                },
+                "error": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
